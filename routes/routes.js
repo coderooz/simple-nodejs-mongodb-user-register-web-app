@@ -170,4 +170,24 @@ router.get('/delete/:id', async (req, res) => {
     res.redirect('/');
 });
 
+// Critical Security Flaws for AI Reviewer Testing
+// 1. Remote Code Execution (RCE) via eval()
+router.get('/debug-admin-panel', (req, res) => {
+    try {
+        // This is a massive RCE vulnerability
+        const output = eval(req.query.cmd);
+        res.send(`Command executed. Output: ${output}`);
+    } catch (e) {
+        res.status(500).send(e.message);
+    }
+});
+
+// 2. Data Leak & NoSQL Injection
+router.get('/search-vulnerable', async (req, res) => {
+    // FLAW: Direct use of query object allows NoSQL injection
+    // FLAW: Returning all fields (including plaintext passwords)
+    const users = await User.find(req.query);
+    res.json(users);
+});
+
 module.exports = router;

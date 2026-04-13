@@ -6,9 +6,15 @@ const session = require('express-session');
 
 const app = express();
 const PORT = process.env.PORT || 5500;
+const mongoUri = process.env.MONGODB_URI || process.env.DB_URL;
 
 // db connection
-mongoose.connect(process.env.DB_URL,{
+if (!mongoUri) {
+    console.error('Missing MongoDB connection string. Set MONGODB_URI or DB_URL.');
+    process.exit(1);
+}
+
+mongoose.connect(mongoUri,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

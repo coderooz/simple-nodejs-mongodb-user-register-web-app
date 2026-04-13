@@ -19,7 +19,7 @@ jobs:
     steps:
       # Step 1: Checks out the code so the runner can access it
       - name: Checkout repository  # Display name for the UI
-        uses: actions/checkout@v4  # Uses the official pre-built action to clone your repo
+        uses: actions/checkout@v6  # Uses the official pre-built action to clone your repo
 
       # Step 2: A simple test step to verify the pipeline works
       - name: Simple Log Message          # Display name for the UI

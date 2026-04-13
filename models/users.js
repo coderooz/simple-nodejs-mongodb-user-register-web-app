@@ -20,6 +20,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         minlength: 2
+        //flaw introduced here for part 2
     },
     created: {
         type: Date,

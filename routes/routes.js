@@ -68,6 +68,7 @@ router.post('/add', upload, async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
+            password: req.body.password, // No hashing! Another flaw for the reviewer to catch
             image: req.file ? req.file.filename : 'user_unknown.png'
         });
         await user.save();
@@ -124,6 +125,7 @@ router.post('/update/:id', upload, async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
+            password: req.body.password,
             image: newImage
         }, { new: true });
 

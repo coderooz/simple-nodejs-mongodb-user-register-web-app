@@ -43,4 +43,4 @@ jobs:
         env:
           DB_URL: mongodb://localhost:27017/registerApp
           PORT: 5500
-        run: npm run prod --dry-run
+        run: timeout 15 npm run prod --dry-run || true

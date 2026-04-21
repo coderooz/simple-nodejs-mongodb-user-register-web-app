@@ -15,12 +15,32 @@ jobs:
     # Specifies the type of virtual machine (runner) to use (latest Ubuntu version)
     runs-on: ubuntu-latest
 
+    services:
+      mongodb:
+        image: mongo:5.0
+        ports:
+          - 27017:27017
+
     # "steps" is a list of individual tasks that run sequentially within the job
     steps:
       # Step 1: Checks out the code so the runner can access it
       - name: Checkout repository  # Display name for the UI
         uses: actions/checkout@v4  # Uses the official pre-built action to clone your repo
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
       # Step 2: A simple test step to verify the pipeline works
       - name: Simple Log Message          # Display name for the UI
         run: echo "CI Pipeline Triggered Successfully!" # Runs a shell command to print text to the logs
+
+      - name: Run app
+        env:
+          DB_URL: mongodb://localhost:27017/registerApp
+          PORT: 5500
+        run: npm run prod --dry-run

@@ -44,3 +44,6 @@ uploads/*
 
 # Misc
 *.tgz
+
+# 490
+ci.yml

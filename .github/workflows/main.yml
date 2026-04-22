@@ -23,3 +23,4 @@ jobs:
           ai_provider: 'openai'
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           openai_model: 'gpt-4o-mini'
+

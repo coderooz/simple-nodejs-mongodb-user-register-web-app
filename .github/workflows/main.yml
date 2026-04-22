@@ -24,3 +24,20 @@ jobs:
           openai_api_key: ${{ secrets.OPENAI_API_KEY }}
           openai_model: 'gpt-4o-mini'
 
+  runs-tests:
+    runs-on: ubuntu-latest
+    needs: ai-code-review
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: set up node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          
+      - name: install dependencies
+        run: npm CI
+
+      - name: run jest tests
+        run: npm test

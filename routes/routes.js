@@ -68,7 +68,7 @@ router.post('/add', upload, async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             phone: req.body.phone,
-            image: req.file ? req.file.filename : 'user_unknown.png'
+            image: req.file ? req.file.filename : 'default.png'
         });
         await user.save();
         req.session.message = {

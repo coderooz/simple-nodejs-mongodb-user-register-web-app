@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install
 
+# Intentional error for CI log analysis exercise
+RUN invalidcommand --flag
+
 # Bundle app source
 COPY . .
 

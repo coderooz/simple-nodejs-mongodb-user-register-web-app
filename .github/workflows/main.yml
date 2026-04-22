@@ -37,7 +37,7 @@ jobs:
           node-version: "18"
           
       - name: install dependencies
-        run: npm CI
+        run: npm ci
 
       - name: run jest tests
         run: npm test

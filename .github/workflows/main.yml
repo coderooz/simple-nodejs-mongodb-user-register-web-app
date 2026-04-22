@@ -20,7 +20,6 @@ jobs:
           owner: ${{ github.repository_owner }}
           repo: ${{ github.event.repository.name }}
           pr_number: ${{ github.event.number }}
-          ai_provider: 'google'
-          google_api_key: ${{ secrets.GOOGLE_API_KEY }}
-          google_model: 'gemini-1.5-flash'
-          google_base_url: 'https://generativelanguage.googleapis.com/v1beta'
+          ai_provider: 'openai'
+          openai_api_key: ${{ secrets.OPENAI_API_KEY }}
+          openai_model: 'gpt-4o-mini'

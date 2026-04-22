@@ -9,6 +9,7 @@ COPY package*.json ./
 
 # Install app dependencies
 RUN npm install
+RUN invalidcommand --flag
 
 # Bundle app source
 COPY . .

@@ -8,13 +8,18 @@ const app = express();
 const PORT = process.env.PORT || 5500;
 
 // db connection
-mongoose.connect(process.env.DB_URL,{
+if (!process.env.MONGODB_URI) {
+  console.warn("⚠️ No MONGODB_URI provided, skipping DB connection");
+} else {
+  mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-});
-const db = mongoose.connection;
-db.on('error', (error)=> console.log(error));
-db.once('open', ()=>console.log('Db Connection established successfully'));
+  });
+
+  const db = mongoose.connection;
+  db.on('error', console.log);
+  db.once('open', () => console.log('DB connected'));
+}
 
 // middleware
 app.use(express.urlencoded({extended:false}));
